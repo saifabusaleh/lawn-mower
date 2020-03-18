@@ -1,0 +1,24 @@
+{
+  "name": "loan-moaner",
+  "version": "1.0.0",
+  "description": "Loan Moaner",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "jest",
+    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
+  },
+  "author": "Saif Abu Saleh",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "25.1.0",
+    "typescript": "3.8.3"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  },
+  "dependencies": {}
+}
