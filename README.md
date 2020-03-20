@@ -1,3 +1,6 @@
+# Lawn Mower
+
+
 build an automatic lawn mower designed to mow rectangular surfaces. (The mower can be programmed to mow the entire surface.)
 The position of the mower can be represented by coordinates (x,y) and by a letter giving the cardinal direction (N,E,W,S). The lawn is divided into a grid to simplify the navigation. For example, a mower position can be « 0, 0, N », it means that this mower is located at the lower-left corner of the lawn, and it is oriented North.
 The mower is controlled by sending it a sequence of letters. Possible letters are « R », « L » and « F ». « R » and « L » make the mower rotate of 90° respectively to the left or to the right, without moving. « F » means that the mower is moving forward on the cell in front of it, without changing its orientation.
@@ -26,3 +29,10 @@ FFRFFRFRRF
 This output is expected (final positions of mowers):
 1 3 N
 5 1 E
+
+
+## Getting Started
+
+Run `npm start` to run the program
+Run `npm test` to run the tests
+
