@@ -36,6 +36,6 @@ This output is expected (final positions of mowers):
 
 ## Getting Started:
 
-Run `npm start` to run the program
-Run `npm test` to run the tests
+* Run `npm start` to run the program
+* Run `npm test` to run the tests
 
