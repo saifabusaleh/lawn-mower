@@ -7,6 +7,7 @@ The mower is controlled by sending it a sequence of letters. Possible letters ar
 If the position after the move is outside the lawn, then the mower do not move, it keeps its orientation and process the next command. The cell directly at North of the position (x, y) has for coordinates (x, y+1).
 
 **Input**:
+
 An input file following these rules is given to program the mower:
 * The first line is the coordinates of the upper-right corner of the lawn, coordinates of lower-left corner are supposed to be (0,0)
 * Next lines of the file drive all mowers. There are two lines for each mower:
@@ -14,12 +15,15 @@ An input file following these rules is given to program the mower:
 * Second line is a sequence of instruction driving the mower across the lawn. Instructions are a sequence of letters without space. Each mower moves sequentially, it means that the second mower moves only after the first one execute all its instructions.
 
 **Output**:
+
 When the mower has executed all its instructions, it outputs its position and orientation.
 
 **GOAL**:
+
 Design and write a program implementing the above specifications and validating the following test.
 
 **TEST**:
+
 This file is given in input:
 `5 5
 1 2 N
