@@ -4,8 +4,18 @@ jest.mock('fs')
 describe('LawnMower', () => {
 
     describe('run', () => {
-        it('should parse and process commands correctly and return correct results', ()=> {
-            MOCK_FILE_INFO = "5 5\n1 2 N\nLFLFLFLFF\n3 3 E\nFFRFFRFRRF"
+        it('should parse and process valid input and return correct results', ()=> {
+            MOCK_FILE_INFO = "5 5 \n1 2 N\nLFLFLFLFF\n3 3 E\nFFRFFRFRRF"
+            require('fs').__setMockFileData(MOCK_FILE_INFO)
+            const lawnMower = new LawnMower()
+            const resultArr = lawnMower.run('ss.txt')
+            expect(resultArr.length).toEqual(2)
+            expect(resultArr[0]).toEqual('1 3 N')
+            expect(resultArr[1]).toEqual('5 1 E')
+        }),
+
+        it('should trim and parse and process valid input commands and return correct results', ()=> {
+            MOCK_FILE_INFO = "   5 5 \n 1 2 N  \n LFLFLFLFF  \n 3 3 E \n    FFRFFRFRRF "
             require('fs').__setMockFileData(MOCK_FILE_INFO)
             const lawnMower = new LawnMower()
             const resultArr = lawnMower.run('ss.txt')

@@ -1,5 +1,4 @@
 const DIRECTIONS = require('../enums/directions')
-const Coordinate = require('./coordinate')
 
 
 class Mower {
@@ -32,16 +31,16 @@ class Mower {
     move() {
         switch (this.currentDirection) {
             case DIRECTIONS.N:
-                if (this.lawn.isInLawn(new Coordinate(this.coordinates.x, this.coordinates.y + 1))) { this.coordinates.y += 1 }
+                if (this.lawn.isInLawn({x: this.coordinates.x, y: this.coordinates.y + 1})) { this.coordinates.y += 1 }
                 break
             case DIRECTIONS.E:
-                if (this.lawn.isInLawn(new Coordinate(this.coordinates.x + 1, this.coordinates.y))) { this.coordinates.x += 1 }
+                if (this.lawn.isInLawn({x: this.coordinates.x+1, y: this.coordinates.y })) { this.coordinates.x += 1 }
                 break
             case DIRECTIONS.S:
-                if (this.lawn.isInLawn(new Coordinate(this.coordinates.x, this.coordinates.y - 1))) { this.coordinates.y -= 1 }
+                if (this.lawn.isInLawn({x: this.coordinates.x, y: this.coordinates.y - 1})) { this.coordinates.y -= 1 }
                 break
             case DIRECTIONS.W:
-                if (this.lawn.isInLawn(new Coordinate(this.coordinates.x - 1, this.coordinates.y))) { this.coordinates.x -= 1 }
+                if (this.lawn.isInLawn({x: this.coordinates.x -1, y: this.coordinates.y})) { this.coordinates.x -= 1 }
                 break
 
             default:

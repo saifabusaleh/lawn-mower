@@ -3,7 +3,6 @@ const Lawn = require('./lawn')
 const LawnMowerCommandProcessor = require('./lawnMowerCommandProcessor')
 const fs = require('fs')
 const path = require('path')
-const Coordinate = require('./coordinate')
 
 class LawnMower {
     run(filePath) {
@@ -12,17 +11,19 @@ class LawnMower {
         let results = []
         if (!data || data.length%2 == 0) throw new Error('wrong file input')
         const lawn = this._parseLawn(data[0])
-        for (let i=1; i < data.length; i+=2) {
-            const mower = this._parseMower(data[i], lawn)
-            commandProcessor.processCommands(data[i+1].split(''), mower)
+
+        data.forEach((dataValue, index) => {
+            if(index%2 ===0 || index === 0) return;
+            const mower = this._parseMower(dataValue, lawn)
+            commandProcessor.processCommands(data[index+1].trim(), mower)
             results.push(mower.getLocation())
-        }
+        });
 
         return results
     }
 
     _parseLawn(lawnData) {
-        const lawnDataArr = lawnData.split(' ')
+        const lawnDataArr = lawnData.trim().split(' ')
         if(lawnDataArr.length != 2 ) throw new Error('wrong lawn input')
         const horizontalSize = parseInt(lawnDataArr[0])
         const verticalSize = parseInt(lawnDataArr[1])
@@ -32,14 +33,15 @@ class LawnMower {
     }
 
     _parseMower(mowerData, lawn) {
-        const positions = mowerData.split(' ')
+        const positions = mowerData.trim().split(' ')
         if(positions.length != 3) throw new Error('wrong mower input')
         const xCord = parseInt(positions[0])
         const yCord = parseInt(positions[1])
-        const coordinate = new Coordinate(xCord, yCord)
-        const direction = positions[2]
         if(!Number.isInteger(xCord) || !Number.isInteger(yCord) || xCord<0 || yCord<0) 
           throw new Error('wrong mower input')
+          
+        const direction = positions[2]
+        const coordinate = { x: xCord, y: yCord}
         return new Mower(coordinate, direction, lawn)
     }
 }

@@ -1,13 +1,11 @@
 const Mower = require("../src/models/mower")
-const Coordinate = require('../src/models/coordinate')
 const DIRECTIONS = require('../src/enums/directions')
 const Lawn = require("../src/models/lawn")
-
 
 describe("Mower", () => {
 
     describe('rotateLeft', () => {
-        const coordinate = new Coordinate(1, 1)
+        const coordinate = {x: 1, y: 1}
         const currentDirection = DIRECTIONS.N
         const lawn = new Lawn(3, 3)
         const mower = new Mower(coordinate, currentDirection, lawn)
@@ -26,7 +24,7 @@ describe("Mower", () => {
 
 
             it('should not rotate left if outside of the lawn', () => {
-                const outsideCoordinate = new Coordinate(3, 3)
+                const outsideCoordinate = {x: 3, y: 3}
                 const outsideMower = new Mower(outsideCoordinate, DIRECTIONS.N, new Lawn(1, 1))
                 outsideMower.rotateLeft()
                 expect(outsideMower.currentDirection).toEqual(DIRECTIONS.N)
@@ -34,7 +32,7 @@ describe("Mower", () => {
             })
     }),
         describe('rotateRight', () => {
-            const coordinate = new Coordinate(1, 1)
+            const coordinate = {x: 1, y: 1}
             const currentDirection = DIRECTIONS.W
             const lawn = new Lawn(3, 3)
             const mower = new Mower(coordinate, currentDirection, lawn)
@@ -62,7 +60,7 @@ describe("Mower", () => {
                 }),
 
                 it('should not rotate right if outside of the lawn', () => {
-                    const outsideCoordinate = new Coordinate(3, 3)
+                    const outsideCoordinate = {x: 3, y: 3}
                     const outsideMower = new Mower(outsideCoordinate, DIRECTIONS.N, new Lawn(1, 1))
                     outsideMower.rotateRight()
                     expect(outsideMower.currentDirection).toEqual(DIRECTIONS.N)
@@ -73,7 +71,7 @@ describe("Mower", () => {
         describe('move', () => {
 
             it('should move correctly to north inside the lawn', () => {
-                const mower = new Mower(new Coordinate(1, 1), DIRECTIONS.N, new Lawn(3, 3))
+                const mower = new Mower({x: 1, y: 1}, DIRECTIONS.N, new Lawn(3, 3))
                 mower.move()
                 expect(mower.currentDirection).toEqual(DIRECTIONS.N)
                 expect(mower.coordinates.x).toEqual(1)
@@ -81,7 +79,7 @@ describe("Mower", () => {
             }),
 
                 it('should move correctly to east inside the lawn', () => {
-                    const mower = new Mower(new Coordinate(1, 1), DIRECTIONS.E, new Lawn(3, 3))
+                    const mower = new Mower({x: 1, y: 1}, DIRECTIONS.E, new Lawn(3, 3))
                     mower.move()
                     expect(mower.currentDirection).toEqual(DIRECTIONS.E)
                     expect(mower.coordinates.x).toEqual(2)
@@ -89,7 +87,7 @@ describe("Mower", () => {
                 }),
 
                 it('should move correctly to west inside the lawn', () => {
-                    const mower = new Mower(new Coordinate(1, 1), DIRECTIONS.W, new Lawn(3, 3))
+                    const mower = new Mower({x: 1, y: 1}, DIRECTIONS.W, new Lawn(3, 3))
                     mower.move()
                     expect(mower.currentDirection).toEqual(DIRECTIONS.W)
                     expect(mower.coordinates.x).toEqual(0)
@@ -97,7 +95,7 @@ describe("Mower", () => {
                 }),
 
                 it('should move correctly to south inside the lawn', () => {
-                    const mower = new Mower(new Coordinate(1, 1), DIRECTIONS.S, new Lawn(3, 3))
+                    const mower = new Mower({x: 1, y: 1}, DIRECTIONS.S, new Lawn(3, 3))
                     mower.move()
                     expect(mower.currentDirection).toEqual(DIRECTIONS.S)
                     expect(mower.coordinates.x).toEqual(1)
@@ -105,7 +103,7 @@ describe("Mower", () => {
                 }),
 
                 it('should not move if trying to move to outside of the lawn', () => {
-                    const mower = new Mower(new Coordinate(3, 3), DIRECTIONS.N, new Lawn(2, 2))
+                    const mower = new Mower({x: 3, y: 3}, DIRECTIONS.N, new Lawn(2, 2))
                     mower.move()
                     expect(mower.currentDirection).toEqual(DIRECTIONS.N)
                     expect(mower.coordinates.x).toEqual(3)
@@ -114,7 +112,7 @@ describe("Mower", () => {
 
                 it('should not move if direction is unknown', () => {
                     try {
-                        const mower = new Mower(new Coordinate(3, 3), 'D', new Lawn(3, 3))
+                        const mower = new Mower({x: 3, y: 3}, 'D', new Lawn(3, 3))
                         mower.move()
                         expect(true).toEqual(false)
                     } catch (e) {
