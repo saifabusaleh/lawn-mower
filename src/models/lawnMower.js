@@ -1,6 +1,6 @@
 const Mower = require('./mower')
 const Lawn = require('./lawn')
-const LawnMowerCommandProcessor = require('./lawnMowerCommandProcessor')
+const LawnMowerCommandProcessor = require('../utils/lawnMowerCommandProcessor')
 const fs = require('fs')
 const path = require('path')
 
