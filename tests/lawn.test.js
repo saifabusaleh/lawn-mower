@@ -1,7 +1,7 @@
 
 const Lawn = require( "../src/models/lawn" )
 
-fdescribe("Lawn", () => {
+describe("Lawn", () => {
     describe("IsInLawn", () => {
         const lawn = new Lawn(2,2)
 
